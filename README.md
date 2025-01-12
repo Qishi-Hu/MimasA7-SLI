@@ -7,7 +7,7 @@ In this project, the FPGA:
 - Synchronizes the projection and capture of each frame by interacting with a PC and a camera module through the GPIO header using a handshake protocol.
 - Utilizes a [customized PCB](https://github.com/ruffner/MojoV3_HDMI_Interface/tree/master/pcb/LauCameraTrigger_MimasA7) to bridge the GPIO header with the PC and camera via a DB9 port.
 
-The camera module captures images reflected by the scanned object and provides them to the host PC for 3-D reconstruction.
+The camera module captures SLI patterns reflected by the scanned object and provides them to the host PC for 3-D reconstruction.
 
 ## FPGA Controller Modes
 
