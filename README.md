@@ -35,7 +35,6 @@ Building an HDMI pass-through is a foundational element of this project. For thi
 A [demo verison](https://github.com/Qishi-Hu/MimasA7-SLI-Demo/tree/main) of this project (before the integration of PCB) is capable of demosntrating each pattern frame at slow motion.
 
 ## Directory Structure
-root/
 ├── README.md         # Overview of the repository  
 ├── SLI_CAM_1.0.xpr.zip  # Archive of the Vivado 2024.1 project  
 ├── Bitsrteam/        # Final bitstream files  
