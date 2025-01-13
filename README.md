@@ -29,3 +29,7 @@ The camera module captures SLI patterns reflected by the scanned object and prov
 ## Licensing
 
 Building an HDMI pass-through is a foundational element of this project. For this, I adapted the design by [hamsternz](https://github.com/hamsternz/Artix-7-HDMI-processing/tree/master) (MIT License).
+
+## Demo Version
+
+A [demo verison](https://github.com/Qishi-Hu/MimasA7-SLI-Demo/tree/main) of this project (before the integration of PCB) is capable of demosntrating each pattern frame at slow motion.
