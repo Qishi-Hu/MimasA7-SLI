@@ -154,7 +154,7 @@ module pixel_pipe(
             trig<=1'b1;
         end
     end
-    assign f_frm = (fra==3'd0);
+    assign f_frm = (fra==3'd0)&&(frq==3'b0);
     
     // set the 7seg display
     reg pos; // 1 for tens , 0 for single digit
