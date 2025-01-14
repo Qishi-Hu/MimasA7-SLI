@@ -13,7 +13,7 @@ The camera module captures SLI patterns reflected by the scanned object and prov
 
 ### 1. Pass-through with Top-Left Pixel Detection
 - The FPGA functions as an HDMI pass-through capable of **720p@60Hz**. The PC is responsible for playing back the SLI patterns.
-- The FPGA reads the top-left pixel (TLP) value of each frame and displays it (in hexadecimal) on a 7-segment display.
+- The FPGA reads the **top-left pixel (TLP)** value of each frame and displays it (in hexadecimal) on a 7-segment display.
 - If the current frame has a different TLP value from the previous frame, the FPGA sends a pulse to trigger the camera shutter during the next VSYNC period.
 - The host PC waits for confirmation that the camera is ready before playing the next frame.
 
