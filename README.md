@@ -9,6 +9,14 @@ In this project, the FPGA:
 
 The camera module captures SLI patterns reflected by the scanned object and provides them to the host PC for 3-D reconstruction.
 
+## How to configure the bitstream?
+
+1. Download and install the latest version of Tenagra FPGA System Manager from [NumatoLab](https://numato.com/product/tenagra-fpga-system-management-software/).
+2. Download the bitstream file `SLI-CAM.bin` to your local machine.
+3. Power on the Mimas A7 board and connect it to your PC via USB.
+4. Open Tenagra =>  **Program Device** => select **Flash Memory** => click **Add More Configurations** => select `SLI-CAM.bin`=> click **Run** => wait until the GUI confirms that the configuration is completed successfully.
+
+
 ## FPGA Controller Modes
 
 ### 1. Pass-through with Top-Left Pixel Detection
