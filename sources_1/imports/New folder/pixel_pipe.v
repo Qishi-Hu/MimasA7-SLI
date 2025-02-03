@@ -85,14 +85,21 @@ module pixel_pipe(
     end
     //frame index counter with a slow motion feature that holds each frame for 32 frames 
     reg[1:0] frq=2'd0; reg[2:0] fra=3'd0; // spatial frquency index, frame index
-    reg hold=1'b0; 
-    always@(posedge in_vsync) begin        
-            if(fra==3'd7) begin
-                if(frq==2'd2) frq<=2'd0;
-                else frq<=frq+2'd1;
+    reg hold=1'b0; reg rdy_reg=0; 
+    
+    always@(posedge in_vsync) begin   
+            rdy_reg<=rdy;   
+            if(mode) begin frq<=2'd0; fra<=3'd0; hold<=1'b1; end  
+            else if (rdy && ~rdy_reg) begin // increment the SLI frame on rising edge of rdy
+                     fra<=fra+3'd1; hold<=1'b0;
+                     if(fra==3'd7) begin
+                        if(frq==2'd2) frq<=2'd0;
+                        else frq<=frq+2'd1;
+                     end
             end
-            if(rdy) begin fra<=fra+3'd1; hold<=1'b0; end
-            else begin fra<=fra; hold<=1'b1; end
+            else begin
+                fra<=fra; hold<=1'b1; frq<=frq;
+            end
     end  
       
     //index mapping; find the correspoding index in the input LUT, according to current row,frq, and fra
