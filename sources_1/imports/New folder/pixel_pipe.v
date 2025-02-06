@@ -93,8 +93,7 @@ module pixel_pipe(
             else if (rdy && ~rdy_reg) begin // increment the SLI frame on rising edge of rdy
                      fra<=fra+3'd1; hold<=1'b0;
                      if(fra==3'd7) begin
-                        if(frq==2'd2) frq<=2'd0;
-                        else frq<=frq+2'd1;
+                        frq<=frq+2'd1;
                      end
             end
             else begin
@@ -193,8 +192,9 @@ module pixel_pipe(
     end
     //connect the pipe
     //assign out_red =in_red; assign out_green =in_green;  assign out_blue =in_blue;
-   assign out_red = mode? in_red : (in_blank? in_red:LUT[index]); 
-   assign out_green = mode? in_green : (in_blank? in_green:LUT[index]);  
-   assign out_blue = mode? in_blue : (in_blank? in_blue:LUT[index]);
+    //flashing sequence for frq==2'b11 => BWBWBWBW
+   assign out_red = mode? in_red : (in_blank? in_red: (frq==2'b11 ? (fra[0]?8'hFF:8'h00) : LUT[index]) );  
+   assign out_green = mode? in_green : (in_blank? in_green:8'h00);  // leave green to "0" for SLI mode 
+   assign out_blue = mode? in_blue : (in_blank? in_blue:  (frq==2'b11 ? (fra[0]?8'hFF:8'h00) : LUT[index]) );
     assign out_hsync =in_hsync; assign out_vsync =in_vsync;  assign out_blank =in_blank; 
 endmodule
