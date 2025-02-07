@@ -240,7 +240,7 @@ begin
     C1_out(1)  <= f_frm;
 
     
-    C2_out(0)  <= '0'; C2_out(1)  <= '0';
+    C2_out(0)  <= trig; C2_out(1)  <= f_frm;
     
  
 
