@@ -59,17 +59,18 @@ The **Active Signal Mode** is the actual setting of the HDMI signal, if it is no
 For passthrough mode, it shows the TLP value in hexdecimal. For SD pattern generation mode, one digit represent the current spatial frequency index (frq) and the other digit represents the frame/phase index (frm) under the current spatial frequency. If it shows "88" after boot up, that means no valid input pixel clock as each segment is set to default value '0' (on).
 ### 3. BTNU push button
 This button is located right next to the Artix-7 trademark. It can be used to reset the HDMI output port during runtime.
-### 4. DIP Swicthes Control
-| LED (Index) | Indication                                                      |
-|-------------|------------------------------------------------------------------|
-| 8           | On to disable Red channel                                                           |
-| 7           | On to disable Green channel                                                           |
-| 6           | On to disable Blue channel                                      |
-| 5           | Unused |
-| 4           | Unused                     |
-| 3           | Unused                                                   |
-| 2           | On for vertical strips, Off for horizontal strips                       |
-| 1           | Unused                                                       |
+### 4. DIP Switches Control
+| SW (Index) | Indication                             |
+|------------|----------------------------------------|
+| 8          | On to disable the Red channel        |
+| 7          | On to disable the Green channel      |
+| 6          | On to disable the Blue channel       |
+| 5          | Unused                               |
+| 4          | Unused                               |
+| 3          | Unused                               |
+| 2          | On for vertical stripes, Off for horizontal stripes |
+| 1          | Unused                               |
+
 ## GPIO pin assignments
 | BASLR Cam  | FPGA Pins | DB9 Pins | Purpose                                         | I/O (from FPGA's POV)             |
 |------------|-----------|----------|-------------------------------------------------|-----------------------------------|
