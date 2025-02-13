@@ -98,3 +98,7 @@ Building an HDMI pass-through is a foundational element of this project. For thi
 ## Demo Version
 
 A [demo verison](https://github.com/Qishi-Hu/MimasA7-SLI-Demo/tree/main) of this project (before the integration of PCB) is capable of demosntrating each pattern frame at slow motion.
+
+## Offline Version
+
+A [offline verison](https://github.com/Qishi-Hu/MimasA7-SLI-Demo/tree/main) of this project dedicted to the SLI Pattern Generation using a SD card, without taking HDMI input. The logics are driven by the local FPGA clock instead of relying on the HDMI Rx clock.
