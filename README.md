@@ -68,7 +68,7 @@ This button is located right next to the Artix-7 trademark. It can be used to re
 | 5           | Unused |
 | 4           | Unused                     |
 | 3           | Unused                                                   |
-| 2           | On for vertical strips,off for horizontal strips                       |
+| 2           | On for vertical strips, Off for horizontal strips                       |
 | 1           | Unused                                                       |
 ## GPIO pin assignments
 | BASLR Cam  | FPGA Pins | DB9 Pins | Purpose                                         | I/O (from FPGA's POV)             |
