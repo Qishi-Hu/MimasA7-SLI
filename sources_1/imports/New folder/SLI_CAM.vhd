@@ -18,7 +18,7 @@ entity SLI_CAM is
         sw            : in    std_logic_vector(7 downto 0) :=(others => '0');
         en : out    std_logic_vector(3 downto 0) :=(others => '1'); -- 7 seg enable
         seg : out    std_logic_vector(7 downto 0) :=(others => '1');
-        BTNL: in std_logic; --left button (vancant, orginally for switch mode)
+        BTNL: in std_logic; --left button ( orginally for switch mode, now for switch orientation)
         BTNT: in std_logic; --top button (vacant, orginally for toggling slow motion)
         BTNR: in std_logic; --right button (reset hdmi_out)
         -- four-line handsake signals for two camera interfaces
@@ -166,10 +166,12 @@ architecture Behavioral of SLI_CAM is
     component pixel_pipe is
         Port ( clk : in STD_LOGIC;  clk10 : in STD_LOGIC; 
         bt : in std_logic_vector(1 downto 0); -- push button 
+        sw : in std_logic_vector(7 downto 0); -- switches
          en : out    std_logic_vector(3 downto 0); -- 7 seg enable
         seg : out    std_logic_vector(7 downto 0);
-        trig    : out STD_LOGIC;  f_frm   : out STD_LOGIC;
-        mode    : in STD_LOGIC;  rdy   : in STD_LOGIC;
+        LUT_rdy   : out STD_LOGIC;
+        trig    : out STD_LOGIC;  f_frm   : out STD_LOGIC; 
+        mode    : in STD_LOGIC;  rdy   : in STD_LOGIC;  
             ------------------
             in_blank  : in std_logic;
             in_hsync  : in std_logic;
@@ -225,9 +227,10 @@ begin
     --led (5)   <= C1_in(1);    led (4)   <= C1_in(0);     led (3)   <= C2_in(1);    led (2)   <= C2_in(0);
     
     -- for SD debugging
-    led (5) <= file_found; 
+    --led (5) <= file_found; 
     -- verify clock selector
-    led (4)   <= sel;    
+    --led (4)   <= sel;    
+    led(4) <= sw(1);
     
         
     -- 4-line protocl pins
@@ -333,9 +336,10 @@ sd_clk <= sd_clk_buf;
 
 i_processing: pixel_pipe Port map ( 
         clk => pixel_clk, clk10 => clk10,
-        en  =>  en, seg => seg, 
+        en  =>  en, seg => seg, sw =>sw,
         trig =>trig, f_frm=> f_frm, 
         mode=>C1_in(1), rdy=> C1_in(0),
+        LUT_rdy => led (5),
         bt => BTNT & BTNL,
         --SD signals
         sd_clk=> sd_clk_buf, sd_cs =>sd_cs_buf,
