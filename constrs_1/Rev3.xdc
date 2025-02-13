@@ -40,6 +40,7 @@ set_max_delay 26.0 -from [get_pins {i_hdmi_io/i_hdmi_input/CE_Delay/m_reg[7]__0/
 set_false_path -through [get_ports BTNL]
 set_false_path -through [get_ports BTNT]
 set_false_path -through [get_ports en[*]]
+set_false_path -through [get_ports sw[*]]
 set_false_path -through [get_ports seg[*]]
 set_false_path -through [get_ports led[*]]
 ####################################################################################################################
@@ -142,3 +143,14 @@ set_property -dict  { PACKAGE_PIN "F13"   IOSTANDARD LVCMOS33   SLEW FAST } [get
 set_property -dict  { PACKAGE_PIN "E13"   IOSTANDARD LVCMOS33   SLEW FAST } [get_ports {C2_out[1]}];                      # IO_L4P_T0_16                  Sch = GPIO_38_P  
 # A28 or GPIO_37_P    reserved 
 set_property -dict  { PACKAGE_PIN "D14"   IOSTANDARD LVCMOS33   SLEW FAST } [get_ports {C2_in[1]}];                      # IO_L6P_T0_16                  Sch = GPIO_37_P
+####################################################################################################################
+#                                               DIP Switches                                                       #
+####################################################################################################################
+set_property -dict { PACKAGE_PIN "B21"   IOSTANDARD LVCMOS33    SLEW FAST} [get_ports { sw[0] }];                   # IO_L21P_T3_DQS_16             Sch = DP0
+set_property -dict { PACKAGE_PIN "A21"   IOSTANDARD LVCMOS33    SLEW FAST} [get_ports { sw[1] }];                   # IO_L21N_T3_DQS_16             Sch = DP1
+set_property -dict { PACKAGE_PIN "E22"   IOSTANDARD LVCMOS33    SLEW FAST} [get_ports { sw[2] }];                   # IO_L22P_T3_16                 Sch = DP2
+set_property -dict { PACKAGE_PIN "D22"   IOSTANDARD LVCMOS33    SLEW FAST} [get_ports { sw[3] }];                   # IO_L22N_T3_16                 Sch = DP3
+set_property -dict { PACKAGE_PIN "E21"   IOSTANDARD LVCMOS33    SLEW FAST} [get_ports { sw[4] }];                   # IO_L23P_T3_16                 Sch = DP4
+set_property -dict { PACKAGE_PIN "D21"   IOSTANDARD LVCMOS33    SLEW FAST} [get_ports { sw[5] }];                   # IO_L23N_T3_16                 Sch = DP5
+set_property -dict { PACKAGE_PIN "G21"   IOSTANDARD LVCMOS33    SLEW FAST} [get_ports { sw[6] }];                   # IO_L24P_T3_16                 Sch = DP6
+set_property -dict { PACKAGE_PIN "G22"   IOSTANDARD LVCMOS33    SLEW FAST} [get_ports { sw[7] }];                   # IO_L24N_T3_16                 Sch = DP7
