@@ -36,7 +36,9 @@ The camera module captures SLI patterns reflected by the scanned object and prov
 
 ## Tips for setting FPS and resoultion for HDMI Input
 The HDMI input should be automtcially conifgured after it reads the EDID from the FPGA. To confirm it in Windows, go to **System > Display > Advanced Settings > Sletect Display "NUMATOmA7"**. The display info should be similar to the screenshot below.
-&nbsp;&nbsp;&nbsp;&nbsp;![image (2)](https://github.com/user-attachments/assets/7602d3e7-48bc-4e80-92ad-71f2a9ab148b)
+<div style="margin-left: 40px;">
+  <img src="https://github.com/user-attachments/assets/7602d3e7-48bc-4e80-92ad-71f2a9ab148b" alt="image (2)">
+</div>
 
 The **Active Signal Mode** is the actual setting of the HDMI signal, if it is not for 720p@60Hz (59.xx Hz or 60.xx Hz are also acceptable), please go to **System > Display > Advanced Settings > Adapter Properties > List All Modes** to manually set the correct mode.
 
