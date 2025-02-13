@@ -102,4 +102,4 @@ A [demo verison](https://github.com/Qishi-Hu/MimasA7-SLI-Demo/tree/main) of this
 
 ## Offline Version
 
-A [offline verison](https://github.com/Qishi-Hu/MimasA7-SLI-Demo/tree/main) of this project dedicted to the SLI Pattern Generation using a SD card, without taking HDMI input. The logics are driven by the local FPGA clock instead of relying on the HDMI Rx clock.
+A [offline verison](https://github.com/Qishi-Hu/MimasA7-SLI-Offline/tree/main) of this project dedicted to the SLI Pattern Generation using a SD card, without taking HDMI input. The logics are driven by the local FPGA clock instead of relying on the HDMI Rx clock.
