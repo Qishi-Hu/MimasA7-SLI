@@ -60,7 +60,7 @@ For passthrough mode, it shows the TLP value in hexdecimal. For SD pattern gener
 ### 3. BTNU push button
 This button is located right next to the Artix-7 trademark. It can be used to reset the HDMI output port during runtime.
 ### 4. DIP Switches Control
-| SW (Index) | Indication                             |
+| SW (Index) | Function                            |
 |------------|----------------------------------------|
 | 8          | On to disable the Red channel        |
 | 7          | On to disable the Green channel      |
