@@ -117,7 +117,7 @@ module pixel_pipe(
     
     always@(posedge in_vsync) begin   
             rdy_reg<=rdy;   
-            if(mode) begin frq<=2'd0; fra<=3'd0; hold<=1'b1; end  
+            if(mode==1'b0) begin frq<=2'd0; fra<=3'd0; hold<=1'b1; end  
             else if (ori ^ ori_reg) begin frq<=2'd0; fra<=3'd0; hold<=1'b1; end  
             else if (rdy && ~rdy_reg) begin // increment the SLI frame on rising edge of rdy
                      fra<=fra+3'd1; hold<=1'b0;
@@ -152,10 +152,10 @@ module pixel_pipe(
         S<=N;
         if((S==B)&&(N==O)) begin
             if(TL==in_red) begin
-                flag<= mode? 1'b0 : (hold==1'b0); TL<=TL;
+                flag<= mode?  (hold==1'b0):1'b0; TL<=TL;
                 end
             else begin
-                flag<= mode? 1'b1 :(hold==1'b0); TL<=in_red;
+                flag<= mode? (hold==1'b0):1'b1 ; TL<=in_red;
                 end
         end
         else begin 
@@ -196,7 +196,7 @@ module pixel_pipe(
     reg pos; // 1 for tens , 0 for single digit
     wire [3:0] digit; // The to-be diplayed digit
     always@(posedge in_hsync) begin pos<=~pos; end
-    assign digit= mode? (pos?  TL[7:4] : TL[3:0] ): (pos?  {2'b00,frq} : {1'b0,fra} ); 
+    assign digit= mode?  (pos?  {2'b00,frq} : {1'b0,fra} ) : (pos?  TL[7:4] : TL[3:0] ); 
     //assign digit=pos?  TL[7:4] : TL[3:0]; 
    // assign digit=pos?  {1'b0,fstat} : {2'b00,ftype};  //for debugging LUT
     always@(negedge in_hsync) begin 
@@ -230,8 +230,8 @@ module pixel_pipe(
         en_R<=sw[7]; en_G<=sw[6]; en_B<=sw[5];
     end
     
-   assign out_red = mode? in_red : (in_blank? in_red: en_R?(frq==2'b11 ? (fra[0]?8'hFF:8'h00) : (ori?LUT[index]:LUT_V[indexV])  ): 8'h00 );  
-   assign out_green = mode? in_green : (in_blank? in_green: en_G?(frq==2'b11 ? (fra[0]?8'hFF:8'h00) : (ori?LUT[index]:LUT_V[indexV])  ): 8'h00 ); 
-   assign out_blue = mode? in_blue : (in_blank? in_blue: en_B?(frq==2'b11 ? (fra[0]?8'hFF:8'h00) : (ori?LUT[index]:LUT_V[indexV])  ): 8'h00 );
+   assign out_red = mode? (in_blank? in_red: en_R?(frq==2'b11 ? (fra[0]?8'hFF:8'h00) : (ori?LUT[index]:LUT_V[indexV])  ): 8'h00 ): in_red ;  
+   assign out_green = mode?  (in_blank? in_green: en_G?(frq==2'b11 ? (fra[0]?8'hFF:8'h00) : (ori?LUT[index]:LUT_V[indexV])  ): 8'h00 ) : in_green ; 
+   assign out_blue = mode? (in_blank? in_blue: en_B?(frq==2'b11 ? (fra[0]?8'hFF:8'h00) : (ori?LUT[index]:LUT_V[indexV])  ): 8'h00 ):in_blue ;
     assign out_hsync =in_hsync; assign out_vsync =in_vsync;  assign out_blank =in_blank; 
 endmodule

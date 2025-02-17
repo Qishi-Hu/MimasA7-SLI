@@ -197,7 +197,7 @@ architecture Behavioral of SLI_CAM is
     );
     end component;
 
-
+    signal not_C1in1 : std_logic;
     signal pixel_clk : std_logic;
     signal in_blank  : std_logic;
     signal in_hsync  : std_logic;
