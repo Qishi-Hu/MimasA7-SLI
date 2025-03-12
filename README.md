@@ -77,7 +77,7 @@ This button is located right next to the Artix-7 trademark. It can be used to re
 | BASLR Cam  | FPGA Pins | DB9 Pins | Purpose                                         | I/O (from FPGA's POV)             |
 |------------|-----------|----------|-------------------------------------------------|-----------------------------------|
 | Line 1     | A31_1     | 5        | Trigger the camera                              | Output                            |
-| Line 2     | A28_1     | 9        | Mode (0 for SD pattern, 1 for pass-through)     | Input                             |
+| Line 2     | A28_1     | 9        | Mode (1 for SD pattern, 0 for pass-through)     | Input                             |
 | Line 3     | A29_1     | 4        | First frame of the pattern                      | Output                            |
 | Line 4     | A32_1     | 8        | Camera is ready for the next trigger            | Input                             |
 | GND        | A40_1     | 1        | Ground                                          | -                                 |
