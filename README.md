@@ -9,7 +9,7 @@ In this project, the FPGA:
 - Synchronizes the projection and capture of each frame by interacting with a PC and a camera module through the GPIO header using a handshake protocol.
 - Utilizes a [customized PCB](https://github.com/ruffner/MojoV3_HDMI_Interface/tree/master/pcb/LauCameraTrigger_MimasA7) to bridge the GPIO header with the PC and camera via a DB9 port.
 
-The camera module captures SLI patterns reflected by the scanned object and provides them to the host PC for 3-D reconstruction. The system can 800x600 resolution at 120FPS.
+The camera module captures SLI patterns reflected by the scanned object and provides them to the host PC for 3-D reconstruction. The system can scan 800x600 resolution at 120FPS.
 
 ## How to configure the bitstream?
 
