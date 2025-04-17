@@ -97,7 +97,7 @@ detect_alignment_proc: process(clk)
                     -------------------------------------------------------------------
                     signal_quality(27 downto 24) <= x"4";
                 else
-                    signal_quality <= signal_quality + x"000100";   -- add a million if there is a symbol error
+                    signal_quality <= signal_quality + x"100000";   -- add a million if there is a symbol error
                 end if;
             else 
                 -----------------------------------------------

@@ -222,6 +222,11 @@ architecture Behavioral of MimasA7_SLI is
     signal vsync  : std_logic;
     signal vsync_Pos  : std_logic;
     signal vsync_reg  : std_logic;
+    signal hsync_reg  : std_logic;
+    signal in_hsync_reg  : std_logic;
+    signal in_vsync_reg  : std_logic;
+    signal detected  : std_logic;
+    signal in_blank_reg  : std_logic;
     signal vsync_dur  : std_logic_vector(7 downto 0);
     signal red    : std_logic_vector(7 downto 0);
     signal green  : std_logic_vector(7 downto 0);
@@ -235,6 +240,7 @@ architecture Behavioral of MimasA7_SLI is
     signal out_green : std_logic_vector(7 downto 0);
     signal out_blue  : std_logic_vector(7 downto 0);
     signal rdy_buf : std_logic;
+    signal online_buf : std_logic;
     signal mode_buf : std_logic;
     signal audio_channel : std_logic_vector(2 downto 0);
     signal audio_de      : std_logic;
@@ -374,20 +380,32 @@ i_DVID_input: vga port map(
  --------------------------------------------
   --   Pixel-wise alteration
  --------------------------------------------
-blank<= in_blank when online='1' else local_blank;
-vsync<= in_vsync when online='1' else local_vsync;
-hsync<= in_hsync when online='1' else local_hsync;
-red<= in_red when online='1' else local_red;
-green<= in_green when online='1' else local_green;
-blue<= in_blue when online='1' else local_blue;
-vsync_Pos <= vsync when VPolarity='1' else not vsync;
+blank<= in_blank when online_buf='1' else local_blank;
+vsync<= in_vsync when online_buf='1' else local_vsync;
+hsync<= in_hsync when online_buf='1' else local_hsync;
+red<= in_red when online_buf='1' else local_red;
+green<= in_green when online_buf='1' else local_green;
+blue<= in_blue when online_buf='1' else local_blue;
+vsync_Pos <= vsync when VPolarity='1' else (not vsync when blank = '1' else '0');
+-- Tricky part is in_vysnc can be uncertain during visible time when V polarity is neg
 process(pixel_clk)
 begin
     if rising_edge(pixel_clk) then
         rdy_buf    <= C1_in(0);
         mode_buf   <= C1_in(1); 
-        vsync_reg  <= vsync;   
-        -- decide VSYNC polarity  
+        in_vsync_reg  <= in_vsync; 
+        in_blank_reg  <= in_blank;
+        online_buf <= online;
+        -- decide VSYNC polarity
+        if (online_buf = '0') then
+            VPolarity <= '0';
+        elsif (in_blank ='1' and in_blank_reg='0') then --when just enter blanking
+            VPolarity <= not in_vsync;
+        else VPolarity <=VPolarity;    
+        end if;
+        
+
+            
 --        if (vsync = '1' and vsync_reg = '0') then
 --            vsync_dur <= (others => '0');
 
@@ -412,12 +430,6 @@ begin
     end if;
 end process;
 
-process(hsync)
-begin
-    if rising_edge(hsync) then
-        VPolarity    <= not vsync;
-    end if;
-end process;
 i_processing: pixel_pipe Port map ( 
         clk => pixel_clk, clk10 => clk10,
         sw =>newSW,
