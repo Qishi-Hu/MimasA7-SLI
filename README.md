@@ -5,7 +5,7 @@ This repository serves a structured light illumination (SLI) system orchestrated
 In this project, the FPGA:
 - Takes HDMI video input from a host PC and outputs HDMI video to a DLP projector.
 - Can replace the HDMI input frames to play SLI patterns.
-- If the HDMI input is absent (offline mode), the FPGA generats the SLI pattern using the local clock source.
+- If the HDMI input is absent (offline mode), the FPGA generates the SLI pattern using the local clock source.
 - Synchronizes the projection and capture of each frame by interacting with a PC and a camera module through the GPIO header using a handshake protocol.
 - Utilizes a [customized PCB](https://github.com/ruffner/MojoV3_HDMI_Interface/tree/master/pcb/LauCameraTrigger_MimasA7) to bridge the GPIO header with the PC and camera via a DB9 port.
 
@@ -38,7 +38,7 @@ The camera module captures SLI patterns reflected by the scanned object and prov
 - The FPGA increments the frame index and triggers the camera on VSYNC, as long as it detects of a rising-edge of the trigger-ready input.
 
 ### 3. Offline Mode
-When the HDMI input is absent, the FPGA enters offline mode. This mode is similar to Mode #2, but the pattern is generated using the local oscillator clock. The pattern is projected at a fixed resolution of 800x600 at 120Hz.
+When the HDMI input is absent, the FPGA enters offline mode. This mode is similar to Mode #2, but the pattern is generated using the local oscillator clock. The pattern is projected at a fixed resolution of 800x600 at 120Hz. **However, this board has cross-talk issues, resulting in an active hdmi_rx_clk signal even when no cable is plugged in. So we use DIP Switch #4 to manually choose between offline and online modes.**
 ## Tips for setting FPS and resoultion for HDMI Input
 The HDMI input should be automtcially conifgured after it reads the EDID from the FPGA. To confirm it in Windows, go to **System > Display > Advanced Settings > Sletect Display "NUMATOmA7"**. The display info should be similar to the screenshot below.
 ![image](https://github.com/user-attachments/assets/912a08cd-cbcb-4760-8423-93dc1fe3947f)
