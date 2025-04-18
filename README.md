@@ -40,11 +40,11 @@ The camera module captures SLI patterns reflected by the scanned object and prov
 ### 3. Offline Mode
 When the HDMI input is absent, the FPGA enters offline mode. This mode is similar to Mode #2, but the pattern is generated using the local oscillator clock. The pattern is projected at a fixed resolution of 800x600 at 120Hz. **However, this board has cross-talk issues, resulting in an active hdmi_rx_clk signal even when no cable is plugged in. So we use DIP Switch #4 to manually choose between offline and online modes.**
 ## Tips for setting FPS and resoultion for HDMI Input
-The HDMI input should be automtcially conifgured after it reads the EDID from the FPGA. To confirm it in Windows, go to **System > Display > Advanced Settings > Sletect Display "NUMATOmA7"**. The display info should be similar to the screenshot below.
+The HDMI input should be automtcially conifgured after it reads the EDID from the FPGA. To confirm it in Windows, go to **System > Display > Advanced Settings > Sletect Display "Qishi-SLI"**. The display info should be similar to the screenshot below.
 ![image](https://github.com/user-attachments/assets/912a08cd-cbcb-4760-8423-93dc1fe3947f)
 
 
-The **Active Signal Mode** is the actual setting of the HDMI signal, if it is not for 800x600@60Hz, please go to **System > Display > Advanced Settings > Adapter Properties > List All Modes** to manually set it.
+The **Active Signal Mode** is the actual setting of the HDMI signal, if it is not for 800x600@120Hz, please go to **System > Display > Advanced Settings > Adapter Properties > List All Modes** to manually set it.
 
 
 ## LED, Push Buttons, and DIP Swicthes
