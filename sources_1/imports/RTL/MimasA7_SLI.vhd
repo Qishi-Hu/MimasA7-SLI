@@ -434,7 +434,7 @@ i_processing: pixel_pipe Port map (
         clk => pixel_clk, clk10 => clk10,
         sw =>newSW,
         trig =>trig, f_frm=> f_frm, 
-        mode=>C1_in(1), rdy=> rdy_buf ,
+        mode=>mode_buf, rdy=> rdy_buf ,
         en=>en, seg=>seg,
         --SD signals
         sd_clk=> sd_clk, sd_cs =>sd_cs,
