@@ -147,7 +147,8 @@ module pixel_pipe(
         else mode_rising <=mode_rising;
         
         
-        if (in_vsync && ~vsync_reg) begin  // on rising edge of vsync
+        if (~mode) rdy_cnt<=4'h0;
+        else if (in_vsync && ~vsync_reg) begin  // on rising edge of vsync
             if (mode_rising && display_mode) begin rdy_cnt<=4'h1;  mode_rising<=0; end
             else if (rdy && ~rdy_reg) rdy_cnt<=(rdy_cnt==4'h0)? 4'h1: rdy_cnt; // keep rdy_counter unchanged as incremnt and drenement happens at the same time
             else rdy_cnt<=(rdy_cnt==4'h0)? 4'h0:rdy_cnt-4'h1; // decrement counter 
